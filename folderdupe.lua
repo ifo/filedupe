@@ -24,7 +24,9 @@ while true do
 end
 
 for key,value in pairs(foldertable) do
-  file = file .. key .. '\t' .. table.concat(value,'\t') .. '\n'
+  if #value ~= 1 then
+    file = file .. key .. '\t' .. table.concat(value,'\t') .. '\n'
+  end
 end
 
 output:write(file)
