@@ -11,11 +11,18 @@ while true do
   file = file .. line .. "\n"
   local path, folder = line:match('(.*/)(.-)$')
   --print(path, folder)
-  if foldertable[folder] ~= nil then
-    foldertable[folder]:insert(path)
-  else
-    foldertable[folder] = {path}
+  if folder ~= nil then
+    if foldertable[folder] == nil then
+      foldertable[folder] = {}
+      table.insert(foldertable[folder],path)
+    else
+      table.insert(foldertable[folder],path)
+    end
+    --print(folder, foldertable.folder[1])
   end
-  print(foldertable[folder][1])
 end
 output:write(file)
+
+for key,value in pairs(foldertable) do
+  print (key,table.concat(value,','))
+end
