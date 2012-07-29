@@ -1,5 +1,7 @@
-local input = io.popen('find temp -type d')
-local output = io.open('temp/folders.txt', 'w+')
+--local input = io.popen('find temp -type d')
+local input = io.open('inputfolders.txt')
+--local output = io.open('temp/folders.txt', 'w+')
+local output = io.open('folders.txt', 'w+')
 
 local file = ""
 
