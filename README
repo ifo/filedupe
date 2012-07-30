@@ -1,0 +1,5 @@
+filedupe takes an input file from a command similar to:
+find <folder> -type d
+and saves a file called folders.txt with every duplicate
+folder contained in that list, as well as including all
+paths that get to that folder name (tab delimited)
