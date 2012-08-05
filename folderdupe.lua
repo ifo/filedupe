@@ -1,15 +1,20 @@
 -- this is now running lua 5.1, and will be using lua file system
 require('lfs')
 
+--[[ for time testing (also uncomment bottom)
+local x = os.clock()
+for i = 1,100000 do
+--]]
+
 --local input = io.popen('find temp -type d')
 --local input = io.open('inputfolders.txt')
 
 --local output = io.open('temp/folders.txt', 'w+')
 --local output = io.open('folders.txt', 'w+')
 
-local file = ""
+--local file = ""
 
-local foldertable = {}
+--local foldertable = {}
 --[[
 while true do
   local line = input:read('*line')
@@ -43,8 +48,9 @@ end
 --]]
 --print(lfs.attributes('temp','mode'))
 
-cur = lfs.currentdir()
-i,dir = lfs.dir(cur)
+
+local cur = lfs.currentdir()
+local i,dir = lfs.dir(cur)
 --print(cur,i,dir)
 --[[
 print(dir:next())
@@ -53,9 +59,14 @@ print(dir:next())
 while true do
   f = dir:next()
   if f == nil then break end
-  if f ~= '.' and f ~= '..' then
+  if not f:find('^%.') then
     if lfs.attributes(f,'mode') == 'directory' then
-      print(f)
+      --print(f)
     end
   end
 end
+
+--[[ for time testing
+end
+print(string.format("elapsed time: %.2f\n", os.clock() - x))
+--]]
