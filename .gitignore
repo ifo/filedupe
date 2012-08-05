@@ -2,3 +2,4 @@
 temp/
 temp/*
 *.txt
+.DS_Store

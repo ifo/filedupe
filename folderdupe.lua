@@ -1,4 +1,6 @@
 --local input = io.popen('find temp -type d')
+-- above command is being changed to 'find temp -type d -ls'
+-- to give folder sizes for comparison
 local input = io.open('inputfolders.txt')
 --local output = io.open('temp/folders.txt', 'w+')
 local output = io.open('folders.txt', 'w+')
