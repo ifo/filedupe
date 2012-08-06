@@ -5,7 +5,6 @@ local x = os.clock()
 for i = 1,100000 do
 --]]
 
-local input = io.open('inputfolders.txt')
 local output = io.open('folders.txt', 'w+')
 local file = ""
 local foldertable = {}
