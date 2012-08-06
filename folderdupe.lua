@@ -2,9 +2,9 @@ require('lfs')
 
 local output = io.open('folders.txt', 'w+')
 
---[[ for time testing (also uncomment bottom)
+---[[ for time testing (also uncomment bottom)
 local x = os.clock()
-for i = 1,100000 do
+--for i = 1,100000 do
 --]]
 
 local file = ""
@@ -39,8 +39,8 @@ for key, value in pairs(foldertable) do
   end
 end
 
---[[ for time testing
-end
+---[[ for time testing
+--end
 print(string.format("elapsed time: %.2f\n", os.clock() - x))
 --]]
 
