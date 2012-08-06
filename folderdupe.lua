@@ -39,6 +39,9 @@ end
 output:write(file)
 --]]-- end old code
 
+local input = io.open('inputfolders.txt')
+local output = io.open('folders.txt', 'w+')
+local file = ""
 local foldertable = {}
 
 function getdirandsize (pathtodir)
@@ -65,31 +68,12 @@ getdirandsize('.')
 for key, value in pairs(foldertable) do
   if #value ~= 1 then
     local k1, k2 = key:match('(.*)?(%d*)')
-    print(k1 .. ' ' .. k2)
+    file = file .. k1 .. ' ' .. k2 .. '\t' .. table.concat(value,'\t') .. '\n'
+    --print(k1 .. ' ' .. k2)
   end
 end
 
---[[ example code grabbed from lfs site
-function attrdir (path)
-    for file in lfs.dir(path) do
-        if file ~= "." and file ~= ".." then
-            local f = path..'/'..file
-            print ("\t "..f)
-            local attr = lfs.attributes (f)
-            assert (type(attr) == "table")
-            if attr.mode == "directory" then
-                attrdir (f)
-            else
-                for name, value in pairs(attr) do
-                    print (name, value)
-                end
-            end
-        end
-    end
-end
-
-attrdir (".")
---]]
+output:write(file)
 
 --[[ for time testing
 end
