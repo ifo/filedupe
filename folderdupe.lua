@@ -39,24 +39,39 @@ end
 output:write(file)
 --]]-- end old code
 
----[[
-local cur = lfs.currentdir()
-local i,dir = lfs.dir(cur)
+function getdirandsize (pathtodir)
+  for folder in lfs.dir(pathtodir) do
+    if not folder:find('^%.') then
+      if lfs.attributes(f,'mode') == 'directory' then
+        local f = path .. '/' .. file
 
-while true do
-  f = dir:next()
-  if f == nil then break end
-  if not f:find('^%.') then
-    if lfs.attributes(f,'mode') == 'directory' then
-      --print(f)
+      end
     end
-  end
 end
+
+--[[ example code grabbed from lfs site
+function attrdir (path)
+    for file in lfs.dir(path) do
+        if file ~= "." and file ~= ".." then
+            local f = path..'/'..file
+            print ("\t "..f)
+            local attr = lfs.attributes (f)
+            assert (type(attr) == "table")
+            if attr.mode == "directory" then
+                attrdir (f)
+            else
+                for name, value in pairs(attr) do
+                    print (name, value)
+                end
+            end
+        end
+    end
+end
+
+attrdir (".")
 --]]
 
 --[[ for time testing
 end
 print(string.format("elapsed time: %.2f\n", os.clock() - x))
 --]]
-
-
