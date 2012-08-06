@@ -39,14 +39,34 @@ end
 output:write(file)
 --]]-- end old code
 
+local foldertable = {}
+
 function getdirandsize (pathtodir)
   for folder in lfs.dir(pathtodir) do
     if not folder:find('^%.') then
+      local f = pathtodir .. '/' .. folder
       if lfs.attributes(f,'mode') == 'directory' then
-        local f = path .. '/' .. file
-
+        local size = lfs.attributes(f,'size')
+        local key = folder .. '?' .. size
+        if foldertable[key] == nil then
+          foldertable[key] = {}
+          table.insert(foldertable[key],pathtodir)
+        else
+          table.insert(foldertable[key],pathtodir)
+        end
+        getdirandsize(f)
       end
     end
+  end
+end
+
+getdirandsize('.')
+
+for key, value in pairs(foldertable) do
+  if #value ~= 1 then
+    local k1, k2 = key:match('(.*)?(%d*)')
+    print(k1 .. ' ' .. k2)
+  end
 end
 
 --[[ example code grabbed from lfs site
