@@ -6,16 +6,13 @@ local x = os.clock()
 for i = 1,100000 do
 --]]
 
---local input = io.popen('find temp -type d')
---local input = io.open('inputfolders.txt')
+--[[ old code, use for refenence (data structure)
 
---local output = io.open('temp/folders.txt', 'w+')
---local output = io.open('folders.txt', 'w+')
+local input = io.open('inputfolders.txt')
+local output = io.open('folders.txt', 'w+')
+local file = ""
+local foldertable = {}
 
---local file = ""
-
---local foldertable = {}
---[[
 while true do
   local line = input:read('*line')
   if line == nil then break end
@@ -40,22 +37,12 @@ for key,value in pairs(foldertable) do
 end
 
 output:write(file)
---]]
---[[
-for k,v in pairs(lfs.attributes('temp')) do
-  print(k,v)
-end
---]]
---print(lfs.attributes('temp','mode'))
+--]]-- end old code
 
-
+---[[
 local cur = lfs.currentdir()
 local i,dir = lfs.dir(cur)
---print(cur,i,dir)
---[[
-print(dir:next())
-print(dir:next())
-]]
+
 while true do
   f = dir:next()
   if f == nil then break end
@@ -65,8 +52,11 @@ while true do
     end
   end
 end
+--]]
 
 --[[ for time testing
 end
 print(string.format("elapsed time: %.2f\n", os.clock() - x))
 --]]
+
+
