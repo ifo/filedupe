@@ -1,6 +1,6 @@
 require('lfs')
 
-local output = io.open('folders.txt', 'w+')
+local output = io.open('list.txt', 'w+')
 
 ---[[ for time testing (also uncomment bottom)
 local x = os.clock()
